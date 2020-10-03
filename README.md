@@ -1,7 +1,8 @@
 # garden_cats
 Source-code-only postmortem of Garden Cats game, made on Godot 
 
-More details (RU only, sorry): https://dtf.ru/indie/183158-o-kotah-snah-i-raznocvetnyh-cvetah
+More details: https://dtf.ru/indie/183158-o-kotah-snah-i-raznocvetnyh-cvetah (RU only, sorry)
 
-[![Garden Cats](https://img.youtube.com/vi/EsakqC53VaI/0.jpg)](https://youtu.be/EsakqC53VaI "Garden Cats MVP")
+Video of gameplay:
+[![Garden Cats MVP](https://img.youtube.com/vi/EsakqC53VaI/0.jpg)](https://youtu.be/EsakqC53VaI "Garden Cats MVP")
 
