@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/tryagain.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/GOODDP__.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/sprites/ui_gameover.png" type="Texture" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 45
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 60
+font_data = ExtResource( 2 )
+
+[node name="tryagain" type="TextureRect"]
+anchor_right = 0.575
+anchor_bottom = 0.712
+margin_left = 2.7207
+margin_top = -2.15845
+margin_right = -0.279419
+margin_bottom = -2.11847
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_left = 0.159
+anchor_top = 0.246
+anchor_right = 0.861
+anchor_bottom = 0.581
+margin_left = 20.0994
+margin_top = 8.98444
+margin_right = -17.8026
+margin_bottom = -8.63058
+custom_fonts/normal_font = SubResource( 1 )
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="."]
+anchor_left = 0.355
+anchor_top = 0.772
+anchor_right = 0.705
+anchor_bottom = 0.883
+margin_left = -4.17191
+margin_top = -6.14337
+margin_right = -4.52191
+margin_bottom = -6.50238
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TextureButton"]
+margin_left = 6.57373
+margin_top = -8.63391
+margin_right = 365.574
+margin_bottom = 94.3661
+custom_fonts/font = SubResource( 2 )
+text = "Try again?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

@@ -1,0 +1,242 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://assets/sprites/boxes.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/cats.png" type="Texture" id=2]
+[ext_resource path="res://scripts/box.gd" type="Script" id=3]
+[ext_resource path="res://assets/fonts/GOODDP__.TTF" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/sounds/box_falling.ogg" type="AudioStream" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 105.009
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 105.423
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform float outline_width = 2.0;
+uniform vec4 outline_color: hint_color;
+uniform bool visible;
+
+void fragment() {
+ vec4 col = texture(TEXTURE, UV);
+ vec2 ps = TEXTURE_PIXEL_SIZE;
+ float a;
+ float maxa = col.a;
+ float mina = col.a;
+ if (visible){
+  a = texture(TEXTURE, UV + vec2(0.0, -outline_width) * ps).a;
+  maxa = max(a, maxa);
+  mina = min(a, mina);
+ 
+  a = texture(TEXTURE, UV + vec2(0.0, outline_width) * ps).a;
+  maxa = max(a, maxa);
+  mina = min(a, mina);
+ 
+  a = texture(TEXTURE, UV + vec2(-outline_width, 0.0) * ps).a;
+  maxa = max(a, maxa);
+  mina = min(a, mina);
+ 
+  a = texture(TEXTURE, UV + vec2(outline_width, 0.0) * ps).a;
+  maxa = max(a, maxa);
+  mina = min(a, mina);
+ }
+
+ COLOR = mix(col, outline_color, maxa - mina);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/outline_width = 2.0
+shader_param/outline_color = Color( 0, 0, 0, 1 )
+shader_param/visible = false
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 483, 483, 483 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 966, 483, 483, 483 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 483, 0, 483, 483 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 966, 0, 483, 483 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 483, 483, 483 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 483, 483 )
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ SubResource( 5 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 6 ) ],
+"loop": false,
+"name": "selected",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": false,
+"name": "opening",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 10 ) ],
+"loop": true,
+"name": "falling",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 534, 178, 178 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 178, 534, 178, 178 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 712, 1068, 178, 178 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 890, 1068, 178, 178 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 1068, 1246, 178, 178 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 1246, 1246, 178, 178 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 1068, 1068, 178, 178 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 1246, 1068, 178, 178 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 1068, 534, 178, 178 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 178, 534, 178, 178 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 178, 356, 178, 178 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 1068, 356, 178, 178 )
+
+[sub_resource type="SpriteFrames" id=24]
+animations = [ {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=25]
+size = 60
+outline_color = Color( 0.00392157, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[node name="box" type="KinematicBody2D"]
+scale = Vector2( 0.6, 0.7 )
+z_index = 1
+z_as_relative = false
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1.0975, -3.60999 )
+shape = SubResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0.621645, -8.99595 )
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+show_behind_parent = true
+material = SubResource( 4 )
+position = Vector2( 1.35381, -0.652495 )
+scale = Vector2( 1.4443, 1.18761 )
+frames = SubResource( 11 )
+animation = "falling"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( -2.9025, -8.33005 )
+stream = ExtResource( 5 )
+volume_db = -14.528
+bus = "Sounds"
+
+[node name="cat_in_box" type="AnimatedSprite" parent="."]
+position = Vector2( -21.4741, 12.5511 )
+scale = Vector2( 1.33376, 1 )
+frames = SubResource( 24 )
+speed_scale = 0.2
+playing = true
+
+[node name="count" type="Label" parent="."]
+margin_left = -7.03964
+margin_top = 89.6321
+margin_right = 202.96
+margin_bottom = 169.632
+rect_rotation = -24.1
+custom_fonts/font = SubResource( 25 )
+text = "Saved: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_entered" from="." to="." method="_on_home_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_home_mouse_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]

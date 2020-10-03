@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/start.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/GOODDP__.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/sprites/ui_start.png" type="Texture" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 500
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="start" type="TextureButton"]
+anchor_right = 0.064
+anchor_bottom = 0.074
+margin_right = 1102.12
+margin_bottom = 724.08
+rect_scale = Vector2( 0.1, 0.1 )
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture_normal = ExtResource( 3 )
+expand = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.404
+anchor_top = 0.369
+anchor_right = 0.747
+anchor_bottom = 0.65
+margin_left = -0.460571
+margin_top = 32.5527
+margin_right = 537.364
+margin_bottom = 306.629
+custom_fonts/font = SubResource( 1 )
+text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="." to="." method="_on_start_pressed"]
