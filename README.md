@@ -1,7 +1,7 @@
 # garden_cats
-Source-code-only postmortem of Garden Cats game, made on Godot.
+Source-code-only postmortem of Garden Cats game, made using Godot.
 
-No assets attached to keep it trully MIT
+No assets attached to keep it MIT as possible
 
 **More details:** https://dtf.ru/indie/183158-o-kotah-snah-i-raznocvetnyh-cvetah (RU only, sorry)
 
